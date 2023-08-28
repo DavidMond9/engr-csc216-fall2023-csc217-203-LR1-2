@@ -13,7 +13,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 /**
  * Maintains a directory of all students enrolled at NC State.
  * All students have a unique id.
- * @author Winston Cheaz
+ * @author Winston Cheaz, David Mond
  */
 public class StudentDirectory {
 	
