@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+/**
+ * Object that emulates a student.
+ */
 public class Student {
 	
 	public static final int MAX_CREDITS = 18;
@@ -34,5 +37,14 @@ public class Student {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	/**
+	 * Converts Student to a string, with variables in order of:
+	 * firstName,lastName,id,email,hashedPassword,maxCredits
+	 */
+	@Override
+	public String toString() {
+		return this.firstName + "," + this.lastName + "," + this.id + "," + this.email + "," + this.password + "," + this.maxCredits;
+	}
+	
 }
