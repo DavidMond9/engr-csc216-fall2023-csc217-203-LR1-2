@@ -1,14 +1,11 @@
 package edu.ncsu.csc216.pack_scheduler.user;
-<<<<<<< HEAD
 /**
  * Student class has many fields defining attributes about the student. It has setter and
  * getter methods for the name, id, and more. It has two constructors, one that uses
  * encapsulation and allows user to set maxCredits, and one that uses the default maxCredits.
-=======
 
 /**
  * Object that emulates a student.
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR1-2.git
  */
 public class Student {
 	/**
@@ -59,7 +56,6 @@ public class Student {
 		setPassword(password);
 		setMaxCredits(maxCredits);
 		
-		
 	}
 	/**
 	 * Creates a Student object. Same as previous Student constructor except this uses the
@@ -76,6 +72,7 @@ public class Student {
 		this.id = id;
 		this.email = email;
 		this.password = password;
+		this.maxCredits = MAX_CREDITS;
 	}
 	
 	
@@ -133,7 +130,7 @@ public class Student {
 		}
 		firstName = name;
 	}
-<<<<<<< HEAD
+
 	/**
 	 * Set's the student's last name.
 	 * @param name Represents the student's last name.
@@ -166,12 +163,17 @@ public class Student {
 			throw new IllegalArgumentException("Invalid email.");
 		}
 		int idx1 = email.indexOf("@");
-		for(int i = 0; i < email.length(); i++) {
-			//if current index is equal to i, and index of . is before index of @, throw exception
-			if(email.indexOf(".") == i && i < idx1) {
-				throw new IllegalArgumentException("Invalid email.");
-			}
+//		for(int i = 0; i < email.length(); i++) {
+//			//if current index is equal to i, and index of . is before index of @, throw exception
+//			if(email.indexOf(".") == i && i < idx1) {
+//				throw new IllegalArgumentException("Invalid email.");
+//			}
+//		}
+		int indexOfLastDot = email.lastIndexOf(".");
+		if(indexOfLastDot < idx1) {
+			throw new IllegalArgumentException("Invalid email.");
 		}
+
 		this.email = email;
 	}
 	/**
@@ -261,19 +263,4 @@ public class Student {
 			return false;
 		return true;
 	}
-	
-	
-
-=======
-	
-	/**
-	 * Converts Student to a string, with variables in order of:
-	 * firstName,lastName,id,email,hashedPassword,maxCredits
-	 */
-	@Override
-	public String toString() {
-		return this.firstName + "," + this.lastName + "," + this.id + "," + this.email + "," + this.password + "," + this.maxCredits;
-	}
-	
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR1-2.git
 }

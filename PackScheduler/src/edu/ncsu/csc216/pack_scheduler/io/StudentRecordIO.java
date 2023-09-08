@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
+/**
+ * Deals with adding and removing Students from a file
+ */
 public class StudentRecordIO {
 	
     /**
@@ -25,10 +28,10 @@ public class StudentRecordIO {
 	    ArrayList<Student> students = new ArrayList<Student>(); //Create an empty array of Student objects
 	    while (fileReader.hasNextLine()) { //While we have more lines in the file
 	        try { //Attempt to do the following
-	            //Read the line, process it in readCourse, and get the object
+	            //Read the line, process it in readStudent, and get the object
 	            //If trying to construct a Student in readStudent() results in an exception, flow of control will transfer to the catch block, below
 	        	Student student = readStudent(fileReader.nextLine()); 
-
+	        	System.out.println(student);
 	            //Create a flag to see if the newly created Student is a duplicate of something already in the list  
 	            boolean duplicate = false;
 	            //Look at all the courses in our list
@@ -48,6 +51,7 @@ public class StudentRecordIO {
 	            	students.add(student); //Add to the ArrayList!
 	            } //Otherwise ignore
 	        } catch (IllegalArgumentException e) {
+	        	System.out.println("Exception is " + e.getMessage());
 	            //The line is invalid b/c we couldn't create a course, skip it!
 	        }
 	    }
@@ -69,7 +73,7 @@ public class StudentRecordIO {
     	for (int i = 0; i < studentDirectory.size(); i++) {
     	    fileWriter.println(studentDirectory.get(i).toString());
     	}
-
+    	
     	fileWriter.close();      
 		
 	}
