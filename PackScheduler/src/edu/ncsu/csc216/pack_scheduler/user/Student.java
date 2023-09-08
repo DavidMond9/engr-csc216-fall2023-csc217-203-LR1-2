@@ -126,7 +126,7 @@ public class Student {
 	 */
 	public void setFirstName(String name) {
 		if("".equals(name) || name == null) {
-			throw new IllegalArgumentException("Invalid First Name.");
+			throw new IllegalArgumentException("Invalid first name");
 		}
 		firstName = name;
 	}
@@ -137,7 +137,7 @@ public class Student {
 	 */
 	public void setLastName(String name) {
 		if("".equals(name) || name == null) {
-			throw new IllegalArgumentException("Invalid Last Name.");
+			throw new IllegalArgumentException("Invalid last name");
 		}
 		lastName = name;
 	}
@@ -147,7 +147,7 @@ public class Student {
 	 */
 	private void setId(String id) {
 		if("".equals(id) || id == null) {
-			throw new IllegalArgumentException("Invalid id.");
+			throw new IllegalArgumentException("Invalid id");
 		}
 		this.id = id;
 	}
@@ -157,10 +157,10 @@ public class Student {
 	 */
 	public void setEmail(String email) {
 		if("".equals(email) || email == null) {
-			throw new IllegalArgumentException("Invalid email.");
+			throw new IllegalArgumentException("Invalid email");
 		}
 		if(!email.contains("@") || !email.contains(".")) {
-			throw new IllegalArgumentException("Invalid email.");
+			throw new IllegalArgumentException("Invalid email");
 		}
 		int idx1 = email.indexOf("@");
 //		for(int i = 0; i < email.length(); i++) {
@@ -171,7 +171,7 @@ public class Student {
 //		}
 		int indexOfLastDot = email.lastIndexOf(".");
 		if(indexOfLastDot < idx1) {
-			throw new IllegalArgumentException("Invalid email.");
+			throw new IllegalArgumentException("Invalid email");
 		}
 
 		this.email = email;
@@ -182,7 +182,7 @@ public class Student {
 	 */
 	public void setPassword(String password) {
 		if("".equals(password) || password == null) {
-			throw new IllegalArgumentException("Invalid password.");
+			throw new IllegalArgumentException("Invalid password");
 		}
 		this.password = password;
 	}
@@ -192,7 +192,7 @@ public class Student {
 	 */
 	public void setMaxCredits(int credits) {
 		if(credits < 3 || credits > 18) {
-			throw new IllegalArgumentException("Invalid max credits.");
+			throw new IllegalArgumentException("Invalid max credits");
 		}
 		maxCredits = credits;
 	}
