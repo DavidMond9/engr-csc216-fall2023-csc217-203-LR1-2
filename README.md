@@ -1,4 +1,5 @@
 # csc217-203-LR1-2
 # TODO
 Winston: 
-David: Implement 1/2 Student
+
+David:
