@@ -32,7 +32,7 @@ class StudentTest {
 	private static final int MAX_CREDITS = 16;
 	
 	/**
-	 * Tests constructing a Student with no specific credit amount given
+	 * Tests constructing a valid Student with a specific credit amount given
 	 */
 	@Test
 	void testStudentNoCredits() {
@@ -49,7 +49,39 @@ class StudentTest {
 				() -> assertEquals(PASSWORD, s.getPassword(), "incorrect instructor id"),
 				() -> assertEquals(MAX_CREDITS, s.getMaxCredits(), "incorrect meeting days"));		
 	}
-	
+	/**
+	 * Tests constructing an invalid Student with specific credit amount given
+	 */
+	@Test
+	void testInvalidStudentNoCredits() {
+		//Checks for invalid First Name
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+				() -> new Student("", LAST_NAME, ID, EMAIL, PASSWORD, MAX_CREDITS));
+		assertEquals("Invalid first name", e1.getMessage());
+		//Checks for invalid Last Name
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, null, ID, EMAIL, PASSWORD, MAX_CREDITS));
+		assertEquals("Invalid last name", e2.getMessage());
+		//Checks for invalid ID
+		Exception e3 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, "", EMAIL, PASSWORD, MAX_CREDITS));
+		assertEquals("Invalid id", e3.getMessage());
+		//Checks for invalid Email
+		Exception e4 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, "Icandoanything@here", PASSWORD, MAX_CREDITS));
+		assertEquals("Invalid email", e4.getMessage());
+		//Checks for invalid Password
+		Exception e5 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, null, MAX_CREDITS));
+		assertEquals("Invalid password", e5.getMessage());
+		//Checks for invalid Max Credits
+		Exception e6 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, 500));
+		assertEquals("Invalid max credits", e6.getMessage());
+}
+	/**
+	 * Tests constructing a Student without a specific amount of credits
+	 */
 	@Test
 	void testStudentWithCredits() {
 		//Tests a valid construction
@@ -66,7 +98,36 @@ class StudentTest {
 						() -> assertEquals(18, s.getMaxCredits(), "incorrect meeting days"));	
 	}
 
-
+	/**
+	 * Tests constructing an invalid Student with specific credit amount given
+	 */
+	@Test
+	void testInvalidStudentWithCredits() {
+		//Checks for invalid First Name
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+				() -> new Student("", LAST_NAME, ID, EMAIL, PASSWORD));
+		assertEquals("Invalid first name", e1.getMessage());
+		//Checks for invalid Last Name
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, null, ID, EMAIL, PASSWORD));
+		assertEquals("Invalid last name", e2.getMessage());
+		//Checks for invalid ID
+		Exception e3 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, "", EMAIL, PASSWORD));
+		assertEquals("Invalid id", e3.getMessage());
+		//Checks for invalid Email
+		Exception e4 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, "Icandoanything@here", PASSWORD));
+		assertEquals("Invalid email", e4.getMessage());
+		//Checks for invalid Password
+		Exception e5 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, null));
+		assertEquals("Invalid password", e5.getMessage());
+		
+	}
+	/**
+	 * Checks to see if setFirstName accepts a valid name, and rejects invalid names
+	 */
 	@Test
 	void testSetFirstName() {
 		//Construct a valid Student
@@ -74,43 +135,134 @@ class StudentTest {
 		Exception e1 = assertThrows(IllegalArgumentException.class,
 						() -> s.setFirstName(null));
 		assertEquals("Invalid first name", e1.getMessage()); //Check correct exception message
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> s.setFirstName(""));
+		assertEquals("Invalid first name", e2.getMessage()); //Check correct exception message
 		assertEquals("first", s.getFirstName()); //Check that first name didn't change
 	}
-
+	/**
+	 * Checks to see if setLastName accepts a valid name, and rejects invalid names
+	 */
 	@Test
 	void testSetLastName() {
-		fail("Not yet implemented");
+		//Construct a valid Student
+		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+						() -> s.setLastName(null));
+		assertEquals("Invalid last name", e1.getMessage()); //Check correct exception message
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> s.setLastName(""));
+		assertEquals("Invalid last name", e2.getMessage()); //Check correct exception message
+		assertEquals("last", s.getLastName()); //Check that last name didn't change
 	}
 
+	/**
+	 * Checks to see if a valid email is accepted and invalid emails aren't
+	 * Tests:
+	 * 	the parameter is null or an empty string
+	 *	email doesn’t contain an ‘@’ character
+	 *	email doesn’t contain a ‘.’ character
+	 *	the index of the last ‘.’ character in the email string is earlier than the index of the first ‘@’ character (for example, first.last@address would be invalid)
+	 */
 	@Test
 	void testSetEmail() {
-		fail("Not yet implemented");
+		//Construct a valid Student
+		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		//Checks for catch null
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+						() -> s.setEmail(null));
+		assertEquals("Invalid email", e1.getMessage()); //Check correct exception message
+		//Checks for catch empty string
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> s.setEmail(""));
+		assertEquals("Invalid email", e2.getMessage()); //Check correct exception message
+		//Checks for catch no "@"
+		Exception e3 = assertThrows(IllegalArgumentException.class,
+				() -> s.setEmail("noatsign."));
+		assertEquals("Invalid email", e3.getMessage()); //Check correct exception message
+		//Checks for catch no "."
+		Exception e4 = assertThrows(IllegalArgumentException.class,
+				() -> s.setEmail("noperiod@here"));
+		assertEquals("Invalid email", e4.getMessage()); //Check correct exception message
+		//Check for no "." after the first "@"
+		Exception e5 = assertThrows(IllegalArgumentException.class,
+				() -> s.setEmail("strange.order@here"));
+		assertEquals("Invalid email", e5.getMessage()); //Check correct exception message
+		assertEquals("email@ncsu.edu", s.getEmail()); //Check that email didn't change
 	}
 
+	/**
+	 * Checks to see if valid passwords are accepted and invalid are rejected
+	 */
 	@Test
 	void testSetPassword() {
-		fail("Not yet implemented");
+		//Construct a valid Student
+		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		//Checks for catch null
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+						() -> s.setPassword(null));
+		assertEquals("Invalid password", e1.getMessage()); //Check correct exception message
+		//Checks for catch empty string
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> s.setPassword(""));
+		assertEquals("Invalid password", e2.getMessage()); //Check correct exception message
+		assertEquals("hashedpassword", s.getPassword()); //Check that the password didn't change
 	}
-
+	/**
+	 * Checks to see if valid max credits are accepted and invalid are rejected
+	 */
 	@Test
 	void testSetMaxCredits() {
-		fail("Not yet implemented");
+		//Construct a valid Student
+		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		//Checks for catch under minimum
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+						() -> s.setMaxCredits(0));
+		assertEquals("Invalid max credits", e1.getMessage()); //Check correct exception message
+		//Checks for catch over maximum
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+						() -> s.setMaxCredits(19));
+		assertEquals("Invalid max credits", e2.getMessage()); //Check correct exception message
 	}
 
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Checks to see if Equals works as expected
+	 */
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Student s1 = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s2 = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s3 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
+		Student s4 = new Student("first?", "last", "id", "email@ncsu.edu", "hashedpassword");
+		assertTrue(s1.equals(s2));
+		assertFalse(s1.equals(s3));
+		assertFalse(s1.equals(s4));
 	}
 	
+	/**
+	 * Checks to see if Hashcode works as expected
+	 */
 	@Test
 	void testHashCode() {
-		fail("Not yet implemented");
+		Student s1 = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s2 = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s3 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
+		Student s4 = new Student("first?", "last", "id", "email@ncsu.edu", "hashedpassword");
+		assertEquals(s1.hashCode(), s2.hashCode());
+		assertNotEquals(s2.hashCode(), s3.hashCode());
+		assertNotEquals(s1.hashCode(), s4.hashCode());
 	}
+	
+	/**
+	 * Test toString() method.
+	 */
+	@Test
+	public void testToString() {
+		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
+		assertEquals("Bob,Builder,bbuilder,bbuilder@ncsu.edu,building,18", s1.toString());
+		assertNotEquals("what,am,I,even,doing,here", s1.toString());
+	}
+
 
 
 }
