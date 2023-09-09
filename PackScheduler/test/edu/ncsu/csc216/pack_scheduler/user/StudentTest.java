@@ -69,7 +69,12 @@ class StudentTest {
 
 	@Test
 	void testSetFirstName() {
-		fail("Not yet implemented");
+		//Construct a valid Student
+		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+						() -> s.setFirstName(null));
+		assertEquals("Invalid first name", e1.getMessage()); //Check correct exception message
+		assertEquals("first", s.getFirstName()); //Check that first name didn't change
 	}
 
 	@Test
