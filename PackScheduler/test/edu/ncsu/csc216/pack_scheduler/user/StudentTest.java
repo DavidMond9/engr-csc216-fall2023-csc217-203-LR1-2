@@ -115,14 +115,18 @@ class StudentTest {
 		Exception e3 = assertThrows(IllegalArgumentException.class,
 				() -> new Student(FIRST_NAME, LAST_NAME, "", EMAIL, PASSWORD));
 		assertEquals("Invalid id", e3.getMessage());
-		//Checks for invalid Email
+		//Checks for invalid ID (null)
 		Exception e4 = assertThrows(IllegalArgumentException.class,
-				() -> new Student(FIRST_NAME, LAST_NAME, ID, "Icandoanything@here", PASSWORD));
-		assertEquals("Invalid email", e4.getMessage());
-		//Checks for invalid Password
+				() -> new Student(FIRST_NAME, LAST_NAME, null, EMAIL, PASSWORD));
+		assertEquals("Invalid id", e4.getMessage());
+		//Checks for invalid Email
 		Exception e5 = assertThrows(IllegalArgumentException.class,
+				() -> new Student(FIRST_NAME, LAST_NAME, ID, "Icandoanything@here", PASSWORD));
+		assertEquals("Invalid email", e5.getMessage());
+		//Checks for invalid Password
+		Exception e6 = assertThrows(IllegalArgumentException.class,
 				() -> new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, null));
-		assertEquals("Invalid password", e5.getMessage());
+		assertEquals("Invalid password", e6.getMessage());
 		
 	}
 	/**

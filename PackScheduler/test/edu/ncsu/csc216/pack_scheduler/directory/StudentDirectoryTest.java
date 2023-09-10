@@ -1,6 +1,5 @@
 package edu.ncsu.csc216.pack_scheduler.directory;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileInputStream;
@@ -33,7 +32,8 @@ public class StudentDirectoryTest {
 	private static final String PASSWORD = "pw";
 	/** Test max credits */
 	private static final int MAX_CREDITS = 15;
-	
+	/** Hashing Algorithm */
+	private static final String HASH_ALGORITHM = "SHA-256";
 	/**
 	 * Resets course_records.txt for use in other tests.
 	 * @throws Exception if something fails during setup.
@@ -88,6 +88,13 @@ public class StudentDirectoryTest {
 		//Test valid file
 		sd.loadStudentsFromFile(validTestFile);
 		assertEquals(10, sd.getStudentDirectory().length);
+		
+		//Test invalid file
+		StudentDirectory sd2 = new StudentDirectory();
+		String invalidPath = "Invalid file path";
+		Exception exception = assertThrows(IllegalArgumentException.class,
+				() -> sd2.loadStudentsFromFile(invalidPath));
+		assertEquals("Unable to read file " + invalidPath, exception.getMessage(), "Incorrect exception thrown with invalid input - " + invalidPath);
 	}
 
 	/**
@@ -104,6 +111,26 @@ public class StudentDirectoryTest {
 		assertEquals(FIRST_NAME, studentDirectory[0][0]);
 		assertEquals(LAST_NAME, studentDirectory[0][1]);
 		assertEquals(ID, studentDirectory[0][2]);
+		
+		//Test invalid Student Passwords
+		Exception exception1 = assertThrows(IllegalArgumentException.class,
+				() -> sd.addStudent(FIRST_NAME, LAST_NAME, "newID1", EMAIL, "", "", MAX_CREDITS));
+		assertEquals("Invalid password", exception1.getMessage());
+		
+		//Test non-matching Student Passwords
+		Exception exception2 = assertThrows(IllegalArgumentException.class,
+				() -> sd.addStudent(FIRST_NAME, LAST_NAME, "newID2", EMAIL, "pass1", "passone", MAX_CREDITS));
+		assertEquals("Passwords do not match", exception2.getMessage());
+		
+		//Test invalid Student maxCredits
+		Exception exception3 = assertThrows(IllegalArgumentException.class,
+				() -> sd.addStudent(FIRST_NAME, LAST_NAME, "newID3", EMAIL, PASSWORD, PASSWORD, 10000));
+		assertEquals("Invalid max credits", exception3.getMessage());
+		
+		//Test repeating student IDs
+		Exception exception4 = assertThrows(IllegalArgumentException.class,
+				() -> sd.addStudent("New First", "New Last", ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS));
+		assertEquals("Invalid id", exception4.getMessage());
 	}
 
 	/**
@@ -136,6 +163,12 @@ public class StudentDirectoryTest {
 		assertEquals(1, sd.getStudentDirectory().length);
 		sd.saveStudentDirectory("test-files/actual_student_records.txt");
 		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
+		
+		//Attempt to save to an invalid file
+		String invalidFilePath = "////?!?!?/??Invalid File Path goes here!";
+		Exception exception = assertThrows(IllegalArgumentException.class,
+				() -> sd.saveStudentDirectory(invalidFilePath));
+		assertEquals("Unable to write to file " + invalidFilePath, exception.getMessage());
 	}
 	
 	/**
@@ -158,5 +191,4 @@ public class StudentDirectoryTest {
 			fail("Error reading files.");
 		}
 	}
-
 }

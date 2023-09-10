@@ -84,18 +84,20 @@ public class StudentDirectory {
 		//If an IllegalArgumentException is thrown, it's passed up from Student
 		//to the GUI
 		Student student = null;
-		if (maxCredits < 3 || maxCredits > Student.MAX_CREDITS) {
-			student = new Student(firstName, lastName, id, email, hashPW);
-		} else {
-			student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
-		}
-		
+//		if (maxCredits < 3 || maxCredits > Student.MAX_CREDITS) {
+//			student = new Student(firstName, lastName, id, email, hashPW);
+//		} else {
+//			student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
+//		}
 		for (int i = 0; i < studentDirectory.size(); i++) {
 			Student s = studentDirectory.get(i);
-			if (s.getId().equals(student.getId())) {
-				return false;
+			if (s.getId().equals(id)) {
+				//Has to throw an exception
+				throw new IllegalArgumentException("Invalid id");
 			}
 		}
+		
+		student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
 		return studentDirectory.add(student);
 	}
 	
