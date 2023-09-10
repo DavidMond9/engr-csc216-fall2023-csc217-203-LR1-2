@@ -14,10 +14,6 @@ import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Scanner;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -132,15 +128,15 @@ class StudentRecordIOTest {
 		}
 	}
 	
-//	/**
-//	 * Tests readStudentRecords() for a file that does not exist.
-//	 */
-//	@Test
-//	public void testReadRecordsFileDoesNotExist() {
-//		ArrayList<Student> s;
-//		Exception e = assertThrows(FileNotFoundException.class,
-//					() -> (s = StudentRecordIO.readStudentRecords("test-files/not_a_real_file.txt")));
-//	}
+	/**
+	 * Tests readStudentRecords() for a file that does not exist.
+	 */
+	@Test
+	public void testReadRecordsFileDoesNotExist() {
+		ArrayList<Student> s = new ArrayList<Student>();
+		Exception e = assertThrows(FileNotFoundException.class,
+					() -> StudentRecordIO.readStudentRecords("test-files/not_a_real_file.txt"));
+	}
 	
 	/**
 	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, java.util.ArrayList)}.
