@@ -213,12 +213,12 @@ public class Student {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (email.hashCode());
-		result = prime * result + (firstName.hashCode());
-		result = prime * result + (id.hashCode());
-		result = prime * result + (lastName.hashCode());
+		result = prime * result + email.hashCode();
+		result = prime * result + firstName.hashCode();
+		result = prime * result + id.hashCode();
+		result = prime * result + lastName.hashCode();
 		result = prime * result + maxCredits;
-		result = prime * result + (password.hashCode());
+		result = prime * result + password.hashCode();
 		return result;
 	}
 	/**
@@ -242,8 +242,6 @@ public class Student {
 			return false;
 		if (maxCredits != other.maxCredits)
 			return false;
-	    if (!password.equals(other.password))
-			return false;
-		return true;
+	    return password.equals(other.password);
 	}
 }

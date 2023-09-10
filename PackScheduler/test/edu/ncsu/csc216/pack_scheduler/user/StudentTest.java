@@ -238,9 +238,9 @@ class StudentTest {
 		Student s2 = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		Student s3 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD);
 		Student s4 = new Student("first?", "last", "id", "email@ncsu.edu", "hashedpassword");
-		assertTrue(s1.equals(s2));
-		assertFalse(s1.equals(s3));
-		assertFalse(s1.equals(s4));
+		assertEquals(s1, s2);
+		assertNotEquals(s1, s3);
+		assertNotEquals(s1, s4);
 	}
 	
 	/**
