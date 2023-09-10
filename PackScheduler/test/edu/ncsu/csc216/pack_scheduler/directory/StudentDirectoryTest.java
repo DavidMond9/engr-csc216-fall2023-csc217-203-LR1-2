@@ -32,8 +32,6 @@ public class StudentDirectoryTest {
 	private static final String PASSWORD = "pw";
 	/** Test max credits */
 	private static final int MAX_CREDITS = 15;
-	/** Hashing Algorithm */
-	private static final String HASH_ALGORITHM = "SHA-256";
 	/**
 	 * Resets course_records.txt for use in other tests.
 	 * @throws Exception if something fails during setup.
