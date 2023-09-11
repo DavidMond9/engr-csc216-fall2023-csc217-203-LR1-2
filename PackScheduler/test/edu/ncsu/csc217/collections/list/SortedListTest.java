@@ -2,16 +2,18 @@ package edu.ncsu.csc217.collections.list;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
 import org.junit.Test;
+
 
 import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 
 public class SortedListTest {
 
