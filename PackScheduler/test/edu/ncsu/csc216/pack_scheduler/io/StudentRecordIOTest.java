@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
+import java.util.SortedList;
 import java.util.Base64;
 import java.util.Scanner;
 import java.io.FileInputStream;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc217.collections.list.;
 
 /**
  * Tests for StudentRecordIO Object
@@ -115,7 +116,7 @@ class StudentRecordIOTest {
 	@Test
 	void testReadStudentRecords() {
 		try {
-			ArrayList<Student> s = StudentRecordIO.readStudentRecords(validTestFile);
+			SortedList<Student> s = StudentRecordIO.readStudentRecords(validTestFile);
 			assertEquals(10, s.size());
 			
 			for (int i = 0; i < validStudents.length; i++) {
@@ -131,7 +132,7 @@ class StudentRecordIOTest {
 	 */
 	@Test
 	public void testReadInvalidStudentRecords() {
-		ArrayList<Student> s;
+		SortedList<Student> s;
 		try {
 			s = StudentRecordIO.readStudentRecords(invalidTestFile);
 			assertEquals(0, s.size());
@@ -145,18 +146,18 @@ class StudentRecordIOTest {
 	 */
 	@Test
 	public void testReadRecordsFileDoesNotExist() {
-		ArrayList<Student> s = new ArrayList<Student>();
+		SortedList<Student> s = new SortedList<Student>();
 		Exception e = assertThrows(FileNotFoundException.class,
 					() -> StudentRecordIO.readStudentRecords("test-files/not_a_real_file.txt"));
 	}
 	
 	/**
 >>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR1-2.git
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, java.util.ArrayList)}.
+	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, )}.
 	 */
 	@Test
 	void testWriteStudentRecords() {
-		ArrayList<Student> students = new ArrayList<Student>();
+		SortedList<Student> students = new SortedList<Student>();
 		students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 		students.add(new Student("Cassandra", "Schwartz", "cschwartz", "semper@imperdietornare.co.uk", hashPW, 4));
 		students.add(new Student("Shannon", "Hansen", "shansen", "convallis.est.vitae@arcu.ca", hashPW, 14));
@@ -177,11 +178,11 @@ class StudentRecordIOTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, java.util.ArrayList)}.
+	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, )}.
 	 */
 	@Test
 	public void testWriteStudentRecordsNoPermissions() {
-		ArrayList<Student> students = new ArrayList<Student>();
+		SortedList<Student> students = new SortedList<Student>();
 		students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 
 		

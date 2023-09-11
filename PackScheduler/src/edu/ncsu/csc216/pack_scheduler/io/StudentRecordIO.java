@@ -5,10 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.SortedList;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
  * Deals with adding and removing Students from a file
@@ -23,9 +24,9 @@ public class StudentRecordIO {
      * @return a list of valid Students
      * @throws FileNotFoundException if the file cannot be found or read
 	 */
-	public static ArrayList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
+	public static SortedList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
-	    ArrayList<Student> students = new ArrayList<Student>(); //Create an empty array of Student objects
+	    SortedList<Student> students = new SortedList<Student>(); //Create an empty array of Student objects
 	    while (fileReader.hasNextLine()) { //While we have more lines in the file
 	        try { //Attempt to do the following
 	            //Read the line, process it in readStudent, and get the object
@@ -47,7 +48,7 @@ public class StudentRecordIO {
 	            }
 	            //If the student is NOT a duplicate
 	            if (!duplicate) {
-	            	students.add(student); //Add to the ArrayList!
+	            	students.add(student); //Add to the SortedList!
 	            } //Otherwise ignore
 	        } catch (IllegalArgumentException e) {
 	        	System.out.println("Exception is " + e.getMessage());
@@ -56,7 +57,7 @@ public class StudentRecordIO {
 	    }
 	    //Close the Scanner b/c we're responsible with our file handles
 	    fileReader.close();
-	    //Return the ArrayList with all the courses we read!
+	    //Return the SortedList with all the courses we read!
 	    return students;
 	}
 	
@@ -66,7 +67,7 @@ public class StudentRecordIO {
 	 * @param studentDirectory A list of Students
 	 * @throws IOException if the file cannot be found/read
 	 */
-	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws IOException {
+	public static void writeStudentRecords(String fileName, SortedList<Student> studentDirectory) throws IOException {
     	PrintStream fileWriter = new PrintStream(new File(fileName));
 
     	for (int i = 0; i < studentDirectory.size(); i++) {
