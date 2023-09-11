@@ -8,7 +8,6 @@ import java.io.PrintStream;
 import edu.ncsu.csc217.collections.list.SortedList;
 import java.util.Scanner;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
  * Deals with adding and removing Students from a file
