@@ -267,6 +267,19 @@ class StudentTest {
 		assertNotEquals("what,am,I,even,doing,here", s1.toString());
 	}
 
-
+	/**
+	 * Test compareTo() method.
+	 */
+	@Test
+	public void testCompareTo() {
+		Student s1 = new Student("Anna", "Barbara", "ab1", EMAIL, PASSWORD);
+		Student s2 = new Student("Charles", "Anthony", "notid1", EMAIL, PASSWORD);
+		Student s3 = new Student("Banna", "Barbara", "notid2", EMAIL, PASSWORD);
+		Student s4 = new Student("Anna", "Barbara", "ab2", EMAIL, PASSWORD);
+		assertTrue(s1.compareTo(s2) > 0);
+		assertTrue(s3.compareTo(s1) > 0);
+		assertTrue(s4.compareTo(s1) > 0);
+		assertEquals(0, s1.compareTo(s1));
+	}
 
 }

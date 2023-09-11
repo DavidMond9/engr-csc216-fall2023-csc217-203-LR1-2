@@ -8,7 +8,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
 /**
  * Object that emulates a student.
  */
-public class Student {
+public class Student implements Comparable<Student> {
 	/**
 	 * Default maxCredits value.
 	 */
@@ -244,5 +244,18 @@ public class Student {
 		if (maxCredits != other.maxCredits)
 			return false;
 	    return password.equals(other.password);
+	}
+	@Override
+	public int compareTo(Student o) {
+		if (this.getLastName().compareTo(o.getLastName()) != 0) {
+			return this.getLastName().compareTo(o.getLastName());
+		}
+		if (this.getFirstName().compareTo(o.getFirstName()) != 0) {
+			return this.getFirstName().compareTo(o.getFirstName());
+		}
+		if (this.getId().compareTo(o.getId()) != 0) {
+			return this.getId().compareTo(o.getId());
+		}
+		return 0;
 	}
 }
