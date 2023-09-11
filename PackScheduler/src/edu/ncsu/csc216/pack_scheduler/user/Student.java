@@ -1,4 +1,5 @@
 package edu.ncsu.csc216.pack_scheduler.user;
+
 /**
  * Student class has many fields defining attributes about the student. It has setter and
  * getter methods for the name, id, and more. It has two constructors, one that uses

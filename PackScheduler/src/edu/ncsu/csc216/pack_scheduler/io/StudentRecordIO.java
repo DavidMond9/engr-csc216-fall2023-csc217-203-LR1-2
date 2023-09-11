@@ -38,9 +38,8 @@ public class StudentRecordIO {
 	            for (int i = 0; i < students.size(); i++) {
 	                //Get the course at index i
 	            	Student current = students.get(i);
-	                //Check if the name and section are the same
-	                if (student.getFirstName().equals(current.getFirstName()) &&
-	                		student.getLastName().equals(current.getLastName())) {
+	                //Check if the first and last names are the same
+	                if (student.getId().equals(current.getId())) {
 	                    //It's a duplicate!
 	                    duplicate = true;
 	                    break; //We can break out of the loop, no need to continue searching
