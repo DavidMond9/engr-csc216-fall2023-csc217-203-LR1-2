@@ -1,8 +1,13 @@
 package edu.ncsu.csc217.collections.list;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.FileNotFoundException;
 
 import org.junit.Test;
+
+import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 
 public class SortedListTest {
 
@@ -50,52 +55,105 @@ public class SortedListTest {
 		//TODO Test getting an element at size
 		
 	}
-	
+	/**
+	 * This test method checks the assert errors are thrown correctly for the remove class
+	 * as well as testing proper function on boundary values.
+	 */
 	@Test
 	public void testRemove() {
 		SortedList<String> list = new SortedList<String>();
+
+		//Test removing from an empty list
 		
-		//TODO Test removing from an empty list
+		assertThrows(IndexOutOfBoundsException.class,
+				() -> list.remove(0));
 		
-		//TODO Add some elements to the list - at least 4
+		//Add some elements to the list - at least 4
 		
-		//TODO Test removing an element at an index < 0
+		list.add("banana");
+		list.add("cantaloupe");
+		list.add("pear");
+		list.add("apple");
 		
-		//TODO Test removing an element at size
+		//Test removing an element at an index < 0
 		
-		//TODO Test removing a middle element
+		assertThrows(IndexOutOfBoundsException.class,
+				() -> list.remove(-1));
 		
-		//TODO Test removing the last element
+		//Test removing an element at size
 		
-		//TODO Test removing the first element
+		assertThrows(IndexOutOfBoundsException.class,
+				() ->  list.remove(list.size()));
 		
-		//TODO Test removing the last element
+		//Test removing a middle element
+		
+		assertEquals("banana", list.remove(1));
+		
+		//Test removing the last element
+		
+		assertEquals("pear", list.remove(2));
+		
+		//Test removing the first element
+		
+		assertEquals("apple", list.remove(0));
+		
+		//Test removing the last element
 	}
-	
+	/**
+	 * This test method validates the functionality of the indexOf method, 
+	 * specifically that it properly returns -1 on an item not in the list,
+	 * appropriately throws an error for a null input, 
+	 * and appropriately reports the index of items in the sorted list.
+	 */
 	@Test
 	public void testIndexOf() {
 		SortedList<String> list = new SortedList<String>();
 		
-		//TODO Test indexOf on an empty list
+		//Test indexOf on an empty list
+		assertEquals(-1, list.indexOf("pear"));
 		
-		//TODO Add some elements
+		//Add some elements
 		
-		//TODO Test various calls to indexOf for elements in the list
+		list.add("banana");
+		list.add("cantaloupe");
+		list.add("pear");
+		list.add("apple");
+		
+		//Test various calls to indexOf for elements in the list
 		//and not in the list
 		
-		//TODO Test checking the index of null
+		assertEquals(0, list.indexOf("apple"));
+		assertEquals(1, list.indexOf("banana"));
+		assertEquals(2, list.indexOf("cantaloupe"));
+		assertEquals(3, list.indexOf("pear"));
+		
+		//Test checking the index of null
+		
+		assertThrows(NullPointerException.class,
+				() -> list.indexOf(null));
 		
 	}
-	
+	/**
+	 * This test method evaluates that the clear method properly clears a list.
+	 */
 	@Test
 	public void testClear() {
 		SortedList<String> list = new SortedList<String>();
 
-		//TODO Add some elements
+		//Add some elements
 		
-		//TODO Clear the list
+		list.add("banana");
+		list.add("cantaloupe");
+		list.add("pear");
+		list.add("apple");
 		
-		//TODO Test that the list is empty
+		//Clear the list
+		
+		list.clear();
+		
+		//Test that the list is empty
+		
+		assertEquals(0, list.size());
 	}
 
 	@Test
