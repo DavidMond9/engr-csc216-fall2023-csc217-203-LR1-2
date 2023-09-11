@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc217.collections.list.;
+import edu.ncsu.csc217.collections.list;
 
 /**
  * Tests for StudentRecordIO Object
