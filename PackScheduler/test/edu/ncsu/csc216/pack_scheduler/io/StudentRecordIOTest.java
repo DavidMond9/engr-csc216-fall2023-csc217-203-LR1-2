@@ -141,7 +141,7 @@ class StudentRecordIOTest {
 	}
 	
 	/**
-	 * Tests readStudentRecords() for a file that does not exist.
+	 * Tests readStudentRecords() for a file that does not exist
 	 */
 	@Test
 	public void testReadRecordsFileDoesNotExist() {
