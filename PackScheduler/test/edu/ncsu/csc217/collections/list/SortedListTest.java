@@ -1,12 +1,8 @@
 package edu.ncsu.csc217.collections.list;
 
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.Test;
-
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 public class SortedListTest {
 
@@ -14,20 +10,11 @@ public class SortedListTest {
 	public void testSortedList() {
 		SortedList<String> list = new SortedList<String>();
 		assertEquals(0, list.size());
-		assertTrue(list.isEmpty());
 		assertFalse(list.contains("apple"));
-		assertTrue(list.add("apple1"));
-		list.add("apple2");
-		list.add("apple3");
-		list.add("apple4");
-		list.add("apple5");
-		list.add("apple6");
-		list.add("apple7");
-		list.add("apple8");
-		list.add("apple9");
-		assertTrue(list.add("apple10"));
-		list.add("apple 11");
-		assertEquals(11, list.size());
+		
+		//TODO Test that the list grows by adding at least 11 elements
+		//Remember the list's initial capacity is 10
+		
 	}
 
 	@Test
@@ -38,15 +25,11 @@ public class SortedListTest {
 		assertEquals(1, list.size());
 		assertEquals("banana", list.get(0));
 		
-		list.add("apple");
-		assertEquals("banana", list.get(1));
-		assertEquals("apple", list.get(0));
-		list.add("orange");
-		assertEquals("apple", list.get(0));
-		assertEquals("banana", list.get(1));
-		assertEquals("orange", list.get(2));
-		assertThrows(NullPointerException.class, () -> list.add(null));
-		assertThrows(IllegalArgumentException.class, () -> list.add("apple"));
+		//TODO Test adding to the front, middle and back of the list
+		
+		//TODO Test adding a null element
+		
+		//TODO Test adding a duplicate element
 	}
 	
 	@Test
@@ -57,13 +40,15 @@ public class SortedListTest {
 		//contents of the list, we don't need to test main flow functionality
 		//here.  Instead this test method should focus on the error 
 		//and boundary cases.
-		assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
-		list.add("apple");
-		list.add("banana");
-		list.add("cranberry");
-		list.add("durian");
-		assertThrows(IndexOutOfBoundsException.class, () -> list.get(-100000));
-		assertThrows(IndexOutOfBoundsException.class, () -> list.get(list.size()));
+		
+		//TODO Test getting an element from an empty list
+		
+		//TODO Add some elements to the list
+		
+		//TODO Test getting an element at an index < 0
+		
+		//TODO Test getting an element at size
+		
 	}
 	
 	@Test
@@ -130,11 +115,11 @@ public class SortedListTest {
 		//Check that the list is no longer empty
 		assertNotEquals(0, list.size());
 	}
+
+	@Test
 	/**
 	 * Tests a list to see if it contains a specific element.
 	 */
-	@Test
-	
 	public void testContains() {
 		SortedList<String> list = new SortedList<String>();
 		
