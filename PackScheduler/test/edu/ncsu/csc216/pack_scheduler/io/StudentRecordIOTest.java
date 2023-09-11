@@ -16,13 +16,13 @@ import org.junit.jupiter.api.Test;
  * Tests for StudentRecordIO Object
  * 
  * @author Sean Van Acker
- * @author 
+ * @author David Mond
  */
 class StudentRecordIOTest {
 	
 	
 	/**
-	 * Helper method to compare two files for the same contents
+	 * Helper method to compare two files for the same contents. Catches IOException error.
 	 * @param expFile expected output
 	 * @param actFile actual output
 	 */
@@ -50,14 +50,14 @@ class StudentRecordIOTest {
 		}
 	}
 
-	/**
+	/** setUp helper method
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 
-	/**
+	/** testReadStudentRecords helper method
 	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#readStudentRecords(java.lang.String)}.
 	 */
 	@Test
@@ -65,7 +65,7 @@ class StudentRecordIOTest {
 		fail("Not yet implemented");
 	}
 
-	/**
+	/** testWriteStudentRecords helper method
 	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, java.util.ArrayList)}.
 	 */
 	@Test
