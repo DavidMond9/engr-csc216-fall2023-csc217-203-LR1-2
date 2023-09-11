@@ -130,11 +130,11 @@ public class SortedListTest {
 		//Check that the list is no longer empty
 		assertNotEquals(0, list.size());
 	}
-
-	@Test
 	/**
 	 * Tests a list to see if it contains a specific element.
 	 */
+	@Test
+	
 	public void testContains() {
 		SortedList<String> list = new SortedList<String>();
 		
