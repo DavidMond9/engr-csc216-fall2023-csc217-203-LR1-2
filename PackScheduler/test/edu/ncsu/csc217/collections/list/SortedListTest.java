@@ -98,48 +98,93 @@ public class SortedListTest {
 		//TODO Test that the list is empty
 	}
 
+	/**
+	 * Tests a list to see if the size of the list is equal to 0, in other words, tests to see if
+	 * the list is empty.
+	 */
 	@Test
 	public void testIsEmpty() {
 		SortedList<String> list = new SortedList<String>();
 		
-		//TODO Test that the list starts empty
+		//Test that the list starts empty
+		assertEquals(0, list.size());
 		
-		//TODO Add at least one element
+		//Add at least one element
+		list.add("element");
 		
-		//TODO Check that the list is no longer empty
+		//Check that the list is no longer empty
+		assertNotEquals(0, list.size());
 	}
 
 	@Test
+	/**
+	 * Tests a list to see if it contains a specific element.
+	 */
 	public void testContains() {
 		SortedList<String> list = new SortedList<String>();
 		
-		//TODO Test the empty list case
+		//Test the empty list case
+		assertEquals(0, list.size());
 		
-		//TODO Add some elements
+		//Add some elements
+		list.add("1");
+		list.add("2");
+		list.add("ice cream");
 		
-		//TODO Test some true and false cases
+		//Test some true and false cases
+		assertTrue(list.contains("1"));
+		assertFalse(list.contains("pizza"));
+		assertTrue(list.contains("ice cream"));
+		assertFalse(list.contains("5"));
 	}
 	
+	/**
+	 * Tests two lists to see if they are equal to each other.
+	 */
 	@Test
 	public void testEquals() {
 		SortedList<String> list1 = new SortedList<String>();
 		SortedList<String> list2 = new SortedList<String>();
 		SortedList<String> list3 = new SortedList<String>();
 		
-		//TODO Make two lists the same and one list different
+		//Make two lists the same and one list different
+		list1.add("a");
+		list1.add("b");
+		list1.add("c");
+		list2 = list1;
+		list3.add("x");
+		list3.add("y");
+		list3.add("z");
 		
-		//TODO Test for equality and non-equality
+		
+		//Test for equality and non-equality
+		assertEquals(list1, list2);
+		assertNotEquals(list1, list3);
+		assertNotEquals(list2, list3);
 	}
 	
+	/**
+	 * Tests two lists to see if their hash codes are equal.
+	 */
 	@Test
 	public void testHashCode() {
 		SortedList<String> list1 = new SortedList<String>();
 		SortedList<String> list2 = new SortedList<String>();
 		SortedList<String> list3 = new SortedList<String>();
 		
-		//TODO Make two lists the same and one list different
+		//Make two lists the same and one list different
+		list1.add("a");
+		list1.add("b");
+		list1.add("c");
+		list2 = list1;
+		list3.add("x");
+		list3.add("y");
+		list3.add("z");
 		
-		//TODO Test for the same and different hashCodes
+		//Test for the same and different hashCodes
+		assertEquals(list1.hashCode(), list2.hashCode());
+		assertNotEquals(list1.hashCode(), list3.hashCode());
+		assertNotEquals(list2.hashCode(), list3.hashCode());
 	}
 
 }
