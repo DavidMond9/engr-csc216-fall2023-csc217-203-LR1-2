@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.SortedList;
 import java.util.Base64;
 import java.util.Scanner;
 import java.io.FileInputStream;
@@ -18,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc217.collections.list;
+import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
  * Tests for StudentRecordIO Object

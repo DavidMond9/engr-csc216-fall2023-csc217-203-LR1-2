@@ -13,7 +13,6 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
  * Deals with adding and removing Students from a file
  */
 public class StudentRecordIO {
-	
     /**
      * Reads student details from a file and generates a list of valid Students.  Any invalid
      * Students are ignored.  If the file to read cannot be found or the permissions are incorrect
