@@ -1,29 +1,14 @@
 package edu.ncsu.csc217.collections.list;
 
 import static org.junit.Assert.*;
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR1-2.git
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR1-2.git
 import static org.junit.jupiter.api.Assertions.assertThrows;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR1-2.git
 import org.junit.Test;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR1-2.git
 import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;

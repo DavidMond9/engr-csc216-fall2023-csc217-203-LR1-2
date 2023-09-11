@@ -5,9 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.SortedList;
+import edu.ncsu.csc217.collections.list.SortedList;
 import java.util.Scanner;
-
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc217.collections.list.SortedList;
 
