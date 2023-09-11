@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.Test;
 
@@ -13,8 +12,15 @@ import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
+/**
+ * Tests the implementation of SortedList
+ */
 public class SortedListTest {
 
+	/**
+	 * Tests constructing a new sortedList, as well as pushing its 
+	 * size
+	 */
 	@Test
 	public void testSortedList() {
 		SortedList<String> list = new SortedList<String>();
@@ -34,7 +40,9 @@ public class SortedListTest {
 		list.add("apple 11");
 		assertEquals(11, list.size());
 	}
-
+	/**
+	 * Tests SortedList.add
+	 */
 	@Test
 	public void testAdd() {
 		SortedList<String> list = new SortedList<String>();
@@ -53,7 +61,9 @@ public class SortedListTest {
 		assertThrows(NullPointerException.class, () -> list.add(null));
 		assertThrows(IllegalArgumentException.class, () -> list.add("apple"));
 	}
-	
+	/**
+	 * Tests SortedList.get 
+	 */
 	@Test
 	public void testGet() {
 		SortedList<String> list = new SortedList<String>();
@@ -189,10 +199,11 @@ public class SortedListTest {
 		assertNotEquals(0, list.size());
 	}
 
-	@Test
+	
 	/**
 	 * Tests a list to see if it contains a specific element.
 	 */
+	@Test
 	public void testContains() {
 		SortedList<String> list = new SortedList<String>();
 		
