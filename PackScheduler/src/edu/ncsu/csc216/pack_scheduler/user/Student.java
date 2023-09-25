@@ -241,9 +241,7 @@ public class Student implements Comparable<Student> {
 			return false;
 		if (!lastName.equals(other.lastName))
 			return false;
-		if (maxCredits != other.maxCredits)
-			return false;
-	    return password.equals(other.password);
+		return !(maxCredits != other.maxCredits) ||  password.equals(other.password);
 	}
 	@Override
 	public int compareTo(Student o) {

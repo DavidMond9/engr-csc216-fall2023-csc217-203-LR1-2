@@ -145,8 +145,7 @@ class StudentRecordIOTest {
 	 */
 	@Test
 	public void testReadRecordsFileDoesNotExist() {
-		SortedList<Student> s = new SortedList<Student>();
-		Exception e = assertThrows(FileNotFoundException.class,
+		assertThrows(FileNotFoundException.class,
 					() -> StudentRecordIO.readStudentRecords("test-files/not_a_real_file.txt"));
 	}
 	
