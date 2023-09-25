@@ -1,13 +1,14 @@
 /**
  * 
  */
-package edu.nccsu.csc126.pack_scheduler.catalog;
+package edu.ncsu.csc216.pack_scheduler.catalog;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc217.collections.list.SortedList;
@@ -148,7 +149,7 @@ public class CourseCatalog {
 	 */
 	public void saveCourseCatalog(String fileName) {
 		try {
-			CourseRecordIO.writeCourseRecords(fileName, schedule);
+			CourseRecordIO.writeCourseRecords(fileName, catalog);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("The file cannot be saved.");
 		}
