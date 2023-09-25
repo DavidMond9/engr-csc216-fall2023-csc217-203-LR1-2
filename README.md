@@ -6,3 +6,6 @@ Complete edu.ncsu.csc216.pack_scheduler.course Package: Deadline - 9/25
 
 David:
 Complete edu.ncsu.csc216.pack_scheduler.io Package: Deadline - 9/25
+
+Sean:
+Complete edu.ncsu.csc216.pack_scheduler.catalog Package: Deadline - 9/25
