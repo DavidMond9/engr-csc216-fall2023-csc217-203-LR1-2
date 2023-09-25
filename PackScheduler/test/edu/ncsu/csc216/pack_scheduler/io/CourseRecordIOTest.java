@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 
 /**
  * Tests CouresRecordIO.
