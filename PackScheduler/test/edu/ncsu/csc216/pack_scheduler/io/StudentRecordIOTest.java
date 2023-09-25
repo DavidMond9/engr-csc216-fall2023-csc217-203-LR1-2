@@ -52,8 +52,8 @@ class StudentRecordIOTest {
 	/** Valid Student Test Example 9 */
 	private String validStudent9 = "Dylan,Nolan,dnolan,placerat.Cras.dictum@dictum.net,pw,5";
 	/** Valid Students string*/
-	private String [] validStudents = {validStudent0, validStudent1, validStudent2, validStudent3, validStudent4, validStudent5,
-	        validStudent6, validStudent7, validStudent8, validStudent9};
+	private String [] validStudents = {validStudent3, validStudent6, validStudent4, validStudent5, validStudent2, validStudent8, 
+			validStudent0,  validStudent9, validStudent1, validStudent7};
 	/** String containing hashed password */
 	private String hashPW;
 	/** Hash Algorithm Type */
@@ -172,7 +172,6 @@ class StudentRecordIOTest {
 		} catch (IOException e) {
 			fail("Cannot write to student records file");
 		}
-		
 		checkFiles("test-files/expected_full_student_records.txt", "test-files/actual_student_records.txt");
 	}
 	

@@ -29,7 +29,6 @@ public class StudentRecordIO {
 	            //Read the line, process it in readStudent, and get the object
 	            //If trying to construct a Student in readStudent() results in an exception, flow of control will transfer to the catch block, below
 	        	Student student = readStudent(fileReader.nextLine()); 
-	        	System.out.println(student);
 	            //Create a flag to see if the newly created Student is a duplicate of something already in the list  
 	            boolean duplicate = false;
 	            //Look at all the courses in our list
@@ -95,6 +94,7 @@ public class StudentRecordIO {
     		String studentHashedPassword = studentReader.next();
     		int studentMaxCredits = Integer.parseInt(studentReader.next());
     		//Close the scanner
+    		System.out.println("Adding: " + studentFirst);
     		studentReader.close();
     		return new Student(studentFirst, studentLast, studentId, studentEmail, studentHashedPassword, studentMaxCredits);
     	}
