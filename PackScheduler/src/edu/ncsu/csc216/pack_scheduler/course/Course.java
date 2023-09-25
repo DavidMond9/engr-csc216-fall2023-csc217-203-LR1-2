@@ -2,11 +2,14 @@
  * 
  */
 package edu.ncsu.csc216.pack_scheduler.course;
+
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * A course for NCSU
  * 
  */
-public class Course extends Activity {
+public class Course extends Activity implements Comparable<Course>{
 	/** Course's name. */
 	private String name;
 	/** Course's section. */
@@ -390,6 +393,13 @@ public class Course extends Activity {
 	public String[] getLongDisplayArray() {
 		String[] longArray = {getName(), getSection(), getTitle(), String.valueOf(getCredits()), getInstructorId(), getMeetingString(), ""};
 		return longArray;
+	}
+
+
+	@Override
+	public int compareTo(Course o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
