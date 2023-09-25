@@ -16,4 +16,6 @@ Assisted with refactoring.
 Sean: 
 Implemented remove(int), indexOf(E), clear() tests for SortedListTest.
 Refactored SortedList in StudentRecordIO.
+Updated System test file.
+Generated JavaDoc files.
 Tasks were tracked externally through google chat. Sean updated the README with tasks completed.
