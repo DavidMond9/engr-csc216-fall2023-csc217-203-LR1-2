@@ -394,12 +394,13 @@ public class Course extends Activity implements Comparable<Course>{
 		String[] longArray = {getName(), getSection(), getTitle(), String.valueOf(getCredits()), getInstructorId(), getMeetingString(), ""};
 		return longArray;
 	}
-
-
+	/**
+	 * Compares two Courses together 
+	 * @return 0 if names are equal, >0 if this.name is greater, <0 if less
+	 */
 	@Override
 	public int compareTo(Course o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getName().compareTo(o.getName());
 	}
 
 }
