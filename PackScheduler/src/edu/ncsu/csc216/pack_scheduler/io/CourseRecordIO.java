@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
  * Reads Course records from text files.  Writes a set of CourseRecords to a file. It contains
@@ -29,9 +30,9 @@ public class CourseRecordIO {
      * @return a list of valid Courses
      * @throws FileNotFoundException if the file cannot be found or read
      */
-	public static ArrayList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
+	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
 	    Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
-	    ArrayList<Course> courses = new ArrayList<Course>(); //Create an empty array of Course objects
+	    SortedList<Course> courses = new SortedList<Course>(); //Create an empty array of Course objects
 	    while (fileReader.hasNextLine()) { //While we have more lines in the file
 	        try { //Attempt to do the following
 	            //Read the line, process it in readCourse, and get the object
@@ -126,7 +127,7 @@ public class CourseRecordIO {
      * @param courses list of Courses to write
      * @throws IOException if cannot write to file
      */
-    public static void writeCourseRecords(String fileName, ArrayList<Course> courses) throws IOException {
+    public static void writeCourseRecords(String fileName, SortedList<Course> courses) throws IOException {
     	PrintStream fileWriter = new PrintStream(new File(fileName));
 
     	for (int i = 0; i < courses.size(); i++) {

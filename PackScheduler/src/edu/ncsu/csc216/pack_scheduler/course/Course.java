@@ -3,8 +3,6 @@
  */
 package edu.ncsu.csc216.pack_scheduler.course;
 
-import edu.ncsu.csc216.pack_scheduler.user.Student;
-
 /**
  * A course for NCSU
  * 

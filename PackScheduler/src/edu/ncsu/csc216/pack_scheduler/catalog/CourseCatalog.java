@@ -54,41 +54,29 @@ public class CourseCatalog{
 		}
 	}
 	
-	/** 
-	 * This method iterates through the catalog array list searching for a course
-	 * that matches the given course name and section. If the course is found, and can be added 
-	 * to the student's schedule, the course is added and the method returns true.
-	 * @param name courseName
-	 * @param section courseSection
-	 * @return true if the given course 1) exists in the catalog, and
-	 * 2) is successfully added to the student's schedule, else not added and returns false.
-	 * @throws IllegalArgumentException if attempting to add a course name
-	 * to schedule which is already in schedule. Throws exception if there is a schedule conflict when
-	 * attempting to add a course to the schedule.
+	/**
+	 * Adds a course to the Catalog given the components of a Course
+	 * @param name The name of the course to be added
+	 * @param title The title of the course to be added
+	 * @param section The section of the course to be added
+	 * @param credits The amount of credits the course is worth
+	 * @param instructorId The ID of the course's instructor
+	 * @param meetingDays The days of the week the course meets
+	 * @param startTime The time the course starts
+	 * @param endTime The time the course ends
+	 * @return False if the course is already in the catalog, True if it was added
 	 */
-	public boolean addCourseToCatalog(String name, String section, int credits, String InstructorId, String meetingDays, 
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays,
 			int startTime, int endTime) {
-//		if (getCourseFromCatalog(name, section) == null) {
-//			return false;
-//		}
-		Course tempCourse = getCourseFromCatalog(name, section);
-		//try {
-			if (catalog.size() > 0) {
-				for(int i = 0; i < catalog.size(); i++) {
-					this.catalog.get(i).checkConflict(tempCourse);
-					boolean duplicate = tempCourse.isDuplicate(this.catalog.get(i));
-					if(duplicate) {
-						throw new IllegalArgumentException("You are already enrolled in " + name);
-					}
-				}
+		Course courseToBeAdded = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		for(int i = 0; i < catalog.size(); i++) {
+			if (this.catalog.get(i).isDuplicate(courseToBeAdded)) {
+				return false;
 			}
-//		} catch (ConflictException e1) {
-//			throw new IllegalArgumentException("The course cannot be added due to a conflict.");
-//		}
-		course = new Course(name, section, credits, InstructorId, meetingDays, startTime, endTime);
-			catalog.add(getCourseFromCatalog(course));
-			return true;
 		}
+		catalog.add(courseToBeAdded);
+		return true;
+	}
 	
 	/** 
 	 * This method removes an activity from the schedule if it is possible to do so.
