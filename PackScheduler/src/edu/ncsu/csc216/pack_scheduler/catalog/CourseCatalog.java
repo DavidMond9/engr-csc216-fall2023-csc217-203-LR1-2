@@ -6,6 +6,7 @@ package edu.ncsu.csc216.pack_scheduler.catalog;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.BooleanSupplier;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
@@ -39,6 +40,15 @@ public class CourseCatalog{
 	public void newCourseCatalog() {
 		catalog = new SortedList<Course>();
 	}
+	
+	/** 
+	 * Constructs a new catalog, then throws a directory into it
+	 */
+	public CourseCatalog(String inputFile) {
+		newCourseCatalog();
+		loadCoursesFromFile(inputFile);
+	}
+	
 	
 	/**
 	 * Constructs the student directory by reading in student information

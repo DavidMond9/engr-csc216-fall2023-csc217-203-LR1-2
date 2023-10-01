@@ -6,6 +6,9 @@ package edu.ncsu.csc216.pack_scheduler.catalog;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -90,20 +93,12 @@ public class CourseCatalogTest {
 	 */
 	@Test
 	public void testAddCourseToCatalog() {
-		CourseCatalog ws = new CourseCatalog(validTestFile);
-		
-		//Attempt to add a course that doesn't exist
-		assertFalse(ws.addCourseToSchedule("CSC 492", "001"));
-		assertEquals(0, ws.getScheduledActivities().length);
-		assertEquals(0, ws.getFullScheduledActivities().length);
+		CourseCatalog ws = new CourseCatalog();
 		
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		
-		//Attempt to add a course that does exist
-		assertTrue(ws.addCourseToSchedule(NAME, SECTION));
-		assertEquals(1, ws.getScheduledActivities().length);
-		assertEquals(1, ws.getFullScheduledActivities().length);
-		String [] course = ws.getFullScheduledActivities()[0];
+		assertTrue(ws.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		// Make sure the details are alright
+		String [] course = ws.getCourseCatalog()[0];
 		assertEquals(NAME, course[0]);
 		assertEquals(SECTION, course[1]);
 		assertEquals(TITLE, course[2]);
@@ -111,95 +106,12 @@ public class CourseCatalogTest {
 		assertEquals(INSTRUCTOR_ID, course[4]);
 		assertEquals(c.getMeetingString(), course[5]);
 		assertEquals("", course[6]);
-		
+		//Make sure you can't add an existing course again
+		assertFalse(ws.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 		//Attempt to add a course that already exists, even if different section
-		try {
-			ws.addCourseToSchedule(NAME, "002");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertEquals("You are already enrolled in CSC 216", e.getMessage());
-		}
+		assertFalse(ws.addCourseToCatalog(NAME, TITLE, "002", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 	}
-	
-	/**
-	 * Test CourseCatalog.addEvent().
-	 */
-	@Test
-	public void testAddEventToSchedule() {
-		CourseCatalog ws = new CourseCatalog(validTestFile);
-		
-		ws.addEventToSchedule(EVENT_TITLE, EVENT_MEETING_DAYS, EVENT_START_TIME, EVENT_END_TIME, EVENT_DETAILS);
-	
-		assertEquals(1, ws.getScheduledActivities().length);
-		assertEquals(1, ws.getFullScheduledActivities().length);
-		String [] course = ws.getFullScheduledActivities()[0];
-		assertEquals("", course[0]);
-		assertEquals("", course[1]);
-		assertEquals(EVENT_TITLE, course[2]);
-		assertEquals("", course[3]);
-		assertEquals("", course[4]);
-		assertEquals("MTWHF 8:00AM-9:00AM", course[5]);
-		assertEquals(EVENT_DETAILS, course[6]);
-		
-		//Attempt to add an event with the same title
-		try {
-			ws.addEventToSchedule(EVENT_TITLE, EVENT_MEETING_DAYS, 1200, 1500, EVENT_DETAILS);
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertEquals("You have already created an event called Exercise", e.getMessage());
-		}
-	}
-	
-	/**
-	 * Test CourseCatalog.removeCourse().
-	 */
-	@Test
-	public void testRemoveCourseFromSchedule() {
-		CourseCatalog ws = new CourseCatalog(validTestFile);
-		
-		//Attempt to remove from empty schedule
-		assertFalse(ws.removeCourseFromSchedule(0));
-		
-		//Add some courses and remove them
-		assertTrue(ws.addCourseToSchedule(NAME, SECTION));
-		assertTrue(ws.addCourseToSchedule("CSC 226", "001"));
-		ws.addEventToSchedule(EVENT_TITLE, EVENT_MEETING_DAYS, EVENT_START_TIME, EVENT_END_TIME, EVENT_DETAILS);
-		assertTrue(ws.addCourseToSchedule("CSC 116", "002"));
-		assertEquals(4, ws.getScheduledActivities().length);
-		assertEquals(4, ws.getFullScheduledActivities().length);
-		
-		//Check that removing a course that doesn't exist when there are 
-		//scheduled courses doesn't break anything
-		assertFalse(ws.removeCourseFromSchedule(5));
-		assertEquals(4, ws.getScheduledActivities().length);
-		assertEquals(4, ws.getFullScheduledActivities().length);
-		
-		//Remove Exercise
-		assertTrue(ws.removeCourseFromSchedule(1));
-		assertEquals(3, ws.getScheduledActivities().length);
-		assertEquals(3, ws.getFullScheduledActivities().length);
-		
-		//Remove CSC226
-		assertTrue(ws.removeCourseFromSchedule(1));
-		assertEquals(2, ws.getScheduledActivities().length);
-		assertEquals(2, ws.getFullScheduledActivities().length);
-		
-		//Remove CSC116
-		assertTrue(ws.removeCourseFromSchedule(1));
-		assertEquals(1, ws.getScheduledActivities().length);
-		assertEquals(1, ws.getFullScheduledActivities().length);
-		
-		//Remove CSC216
-		assertTrue(ws.removeCourseFromSchedule(0));
-		assertEquals(0, ws.getScheduledActivities().length);
-		assertEquals(0, ws.getFullScheduledActivities().length);
-		
-		//Check that removing all doesn't break future adds
-		assertTrue(ws.addCourseToSchedule("CSC 230", "001"));
-		assertEquals(1, ws.getScheduledActivities().length);
-		assertEquals(1, ws.getFullScheduledActivities().length);
-	}
-	
+
 	/**
 	 * Test CourseCatalog.resetSchedule()
 	 */
