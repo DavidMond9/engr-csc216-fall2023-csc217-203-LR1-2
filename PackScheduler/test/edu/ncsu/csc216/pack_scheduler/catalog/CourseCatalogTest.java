@@ -126,6 +126,18 @@ public class CourseCatalogTest {
 				() -> ws.saveCourseCatalog("*!|<><///test_save_course_records.txt"));
 		assertEquals(e.getMessage(), "The file cannot be saved.");
 	}
+	
+	/**
+	 * Test CourseCatalog.removeCourseFromCatalog().
+	 */
+	@Test
+	public void testRemoveCourseFromCatalog() {
+		CourseCatalog ws = new CourseCatalog();
+		//This should fail
+		assertFalse(ws.removeCourseFromCatalog("CSC 116", "001"));
+		ws.loadCoursesFromFile(validTestFile);
+		assertTrue(ws.removeCourseFromCatalog("CSC 116", "001"));
+	}
 	/**
 	 * Test CourseCatalog.getCourseCatalog().
 	 */

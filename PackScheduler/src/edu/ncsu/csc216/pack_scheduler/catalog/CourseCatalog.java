@@ -89,18 +89,25 @@ public class CourseCatalog{
 	}
 	
 	/** 
-	 * This method removes an activity from the schedule if it is possible to do so.
-	 * @param idx index of the activity to remove
-	 * @return true if the given course is able to be removed from the schedule,
-	 * or false if the course is not in the schedule.
+	 * This method removes an activity from the catalog if it is possible to do so
+	 * @param name Name of the course to be removed from catalog
+	 * @param section Section of the course to be removed from catalog
+	 * @return true if the given course is able to be removed from the catalog,
+	 * or false if the course is not in the catalog.
 	 */
-	public boolean removeCourseFromCatalog(int idx) {
-		try {
-			catalog.remove(idx);
-			return true;
-		} catch (IndexOutOfBoundsException e) {
+	public boolean removeCourseFromCatalog(String name, String section) {
+		if (catalog.size() == 0){
 			return false;
 		}
+		for(int i = 0; i < catalog.size(); i++) {
+			String tempName = this.catalog.get(i).getName();
+			String tempSection = this.catalog.get(i).getSection();
+			if(name.equals(tempName) && section.equals(tempSection)) {
+				catalog.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
