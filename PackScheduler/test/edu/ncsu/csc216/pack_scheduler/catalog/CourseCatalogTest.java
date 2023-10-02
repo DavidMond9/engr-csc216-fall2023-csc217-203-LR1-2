@@ -90,8 +90,8 @@ public class CourseCatalogTest {
 		assertEquals(c.getMeetingString(), course[3]);
 		//Make sure you can't add an existing course again
 		assertFalse(ws.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
-		//Attempt to add a course that already exists, even if different section
-		assertFalse(ws.addCourseToCatalog(NAME, TITLE, "002", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		//Attempt to add a course that already exists, but has a different section 
+		assertTrue(ws.addCourseToCatalog(NAME, TITLE, "002", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 	}
 	
 	

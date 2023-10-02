@@ -312,7 +312,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public boolean isDuplicate(Activity activity) {
 		if (activity instanceof Course) {
 			Course confirmedCourse = (Course) activity;
-			return this.getName().equals(confirmedCourse.getName());
+			return this.getName().equals(confirmedCourse.getName()) && this.getSection().equals(confirmedCourse.getSection());
 		}
 		return false;
 	}
