@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,40 +103,29 @@ public class CourseCatalogTest {
 		assertEquals(NAME, course[0]);
 		assertEquals(SECTION, course[1]);
 		assertEquals(TITLE, course[2]);
-		assertEquals("" + CREDITS, course[3]);
-		assertEquals(INSTRUCTOR_ID, course[4]);
-		assertEquals(c.getMeetingString(), course[5]);
-		assertEquals("", course[6]);
+		assertEquals(c.getMeetingString(), course[3]);
 		//Make sure you can't add an existing course again
 		assertFalse(ws.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 		//Attempt to add a course that already exists, even if different section
 		assertFalse(ws.addCourseToCatalog(NAME, TITLE, "002", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
 	}
-
+	
+	
 	/**
-	 * Test CourseCatalog.resetSchedule()
+	 * Test CourseCatalog.saveCourse().
 	 */
 	@Test
-	public void testResetSchedule() {
-		CourseCatalog ws = new CourseCatalog(validTestFile);
-		
-		//Add some courses and reset schedule
-		assertTrue(ws.addCourseToSchedule(NAME, SECTION));
-		assertTrue(ws.addCourseToSchedule("CSC 226", "001"));
-		assertTrue(ws.addCourseToSchedule("CSC 116", "002"));
-		assertEquals(3, ws.getScheduledActivities().length);
-		assertEquals(3, ws.getFullScheduledActivities().length);
-		
-		ws.resetSchedule();
-		assertEquals(0, ws.getScheduledActivities().length);
-		assertEquals(0, ws.getFullScheduledActivities().length);
-		
-		//Check that resetting doesn't break future adds
-		assertTrue(ws.addCourseToSchedule("CSC 230", "001"));
-		assertEquals(1, ws.getScheduledActivities().length);
-		assertEquals(1, ws.getFullScheduledActivities().length);
+	public void testSaveCourseToCatalog() {
+		CourseCatalog ws = new CourseCatalog();
+		ws.loadCoursesFromFile(validTestFile);
+		//See if it can save to a legal test file
+		assertDoesNotThrow(() -> ws.saveCourseCatalog("test-files/test_save_course_records.txt"),
+				"Should not throw exception");
+		// Attempt to save to an illegal test file
+		Exception e = assertThrows(IllegalArgumentException.class, 
+				() -> ws.saveCourseCatalog("*!|<><///test_save_course_records.txt"));
+		assertEquals(e.getMessage(), "The file cannot be saved.");
 	}
-	
 	/**
 	 * Test CourseCatalog.getCourseCatalog().
 	 */
