@@ -7,7 +7,7 @@ package edu.ncsu.csc216.pack_scheduler.course;
  * A course for NCSU
  * 
  */
-public class Course extends Activity implements Comparable<Course>{
+public class Course extends Activity implements Comparable<Course> {
 	/** Course's name. */
 	private String name;
 	/** Course's section. */

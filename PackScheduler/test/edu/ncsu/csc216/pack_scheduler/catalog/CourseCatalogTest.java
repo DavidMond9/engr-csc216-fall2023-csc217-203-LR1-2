@@ -8,14 +8,11 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 /**
  * Tests the CourseCatalog class.
@@ -27,8 +24,6 @@ public class CourseCatalogTest {
 	
 	/** Valid course records */
 	private final String validTestFile = "test-files/course_records.txt";
-	/** Invalid course records */
-	private final String invalidTestFile = "test-files/invalid_course_records.txt";
 	
 	/** Course name */
 	private static final String NAME = "CSC 216";
@@ -47,17 +42,6 @@ public class CourseCatalogTest {
 	/** Course end time */
 	private static final int END_TIME = 1445;
 	
-	/** Event title */
-	private static final String EVENT_TITLE = "Exercise";
-	/** Event meeting days */
-	private static final String EVENT_MEETING_DAYS = "MTWHF";
-	/** Event start time */
-	private static final int EVENT_START_TIME = 800;
-	/** Event end time */
-	private static final int EVENT_END_TIME = 900;
-	/** Event details */
-	private static final String EVENT_DETAILS = "Cardio Time!";
-
 	/**
 	 * Resets course_records.txt for use in other tests.
 	 */
@@ -201,29 +185,5 @@ public class CourseCatalogTest {
 		assertEquals("001", catalog[12][1]);
 		assertEquals("Data Structures and Algorithms", catalog[12][2]);
 	}
-	
-	/**
-	 * Helper method to compare two files for the same contents
-	 * @param expFile expected output
-	 * @param actFile actual output
-	 */
-	private void checkFiles(String expFile, String actFile) {
-		try (Scanner expScanner = new Scanner(new File(expFile));
-			 Scanner actScanner = new Scanner(new File(actFile));) {
-			
-			while (actScanner.hasNextLine()) {
-				assertEquals(expScanner.nextLine(), actScanner.nextLine());
-			}
-			if (expScanner.hasNextLine()) {
-				fail();
-			}
-			
-			expScanner.close();
-			actScanner.close();
-		} catch (IOException e) {
-			fail("Error reading files.");
-		}
-	}
-
 }
 
